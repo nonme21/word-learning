@@ -23,47 +23,47 @@ export function AddWordDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger render={
         <Button className="rounded-xl font-bold shadow-sm" size="sm">
           <Plus className="w-4 h-4 mr-2" />
-          Add Word
+          Добавить слово
         </Button>
-      </DialogTrigger>
+      } />
       <DialogContent className="sm:max-w-[425px] rounded-3xl border-2">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">Add New Word</DialogTitle>
+            <DialogTitle className="text-2xl font-bold">Добавить новое слово</DialogTitle>
             <DialogDescription>
-              Add a new word to your dictionary. It will be scheduled for review.
+              Добавьте новое слово в свой словарь. Оно будет запланировано для повторения.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="word" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Word</Label>
+              <Label htmlFor="word" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Слово</Label>
               <Input
                 id="word"
                 name="word"
-                placeholder="e.g. Gato"
+                placeholder="напр. Gato"
                 required
                 className="h-12 border-2 bg-muted/50 rounded-xl"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="translation" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Translation</Label>
+              <Label htmlFor="translation" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Перевод</Label>
               <Input
                 id="translation"
                 name="translation"
-                placeholder="e.g. Cat"
+                placeholder="напр. Кот"
                 required
                 className="h-12 border-2 bg-muted/50 rounded-xl"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="example" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Example (Optional)</Label>
+              <Label htmlFor="example" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Пример (необязательно)</Label>
               <Input
                 id="example"
                 name="example"
-                placeholder="e.g. El gato duerme"
+                placeholder="напр. El gato duerme"
                 className="h-12 border-2 bg-muted/50 rounded-xl"
               />
             </div>
@@ -74,7 +74,7 @@ export function AddWordDialog() {
               className="w-full h-12 text-lg font-bold rounded-xl shadow-sm" 
               disabled={loading}
             >
-              {loading ? "Adding..." : "Add Word"}
+              {loading ? "Добавление..." : "Добавить слово"}
             </Button>
           </DialogFooter>
         </form>

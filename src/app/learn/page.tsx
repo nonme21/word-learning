@@ -37,16 +37,16 @@ export default async function LearnPage() {
         <div className="w-24 h-24 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-2">
           <CheckCircle2 className="w-12 h-12 text-primary" />
         </div>
-        <h1 className="text-4xl font-bold tracking-tight">You're all caught up!</h1>
+        <h1 className="text-4xl font-bold tracking-tight">Вы всё повторили!</h1>
         <p className="text-xl text-muted-foreground max-w-md">
-          You've reviewed all your words for now. Come back later or add new words to your dictionary.
+          Вы повторили все слова на данный момент. Возвращайтесь позже или добавьте новые слова в свой словарь.
         </p>
         <div className="flex gap-4 mt-8">
           <Button size="lg" className="rounded-xl font-bold h-12" asChild>
-            <Link href="/">Back to Dashboard</Link>
+            <Link href="/">На главную</Link>
           </Button>
           <Button size="lg" variant="outline" className="rounded-xl font-bold h-12 border-2" asChild>
-            <Link href="/dictionary">Add More Words</Link>
+            <Link href="/dictionary">Добавить еще слова</Link>
           </Button>
         </div>
       </div>
@@ -56,8 +56,8 @@ export default async function LearnPage() {
   return (
     <div className="flex flex-col flex-1 h-full max-h-[800px]">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Review Session</h1>
-        <p className="text-muted-foreground font-medium">{wordsToReview.length} words remaining</p>
+        <h1 className="text-2xl font-bold">Сеанс повторения</h1>
+        <p className="text-muted-foreground font-medium">Осталось {wordsToReview.length} слов</p>
       </div>
       <StudySession words={wordsToReview} />
     </div>

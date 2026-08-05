@@ -8,13 +8,13 @@ import { Navbar } from "@/components/navbar";
 const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Anki Clone - Learn Languages",
-  description: "A beautiful spaced repetition learning app",
+  title: "LingoAnki - Изучение языков",
+  description: "Красивое приложение для интервального повторения",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning>
       <body className={`${font.className} min-h-screen bg-background text-foreground flex flex-col`}>
         <ThemeProvider
           attribute="class"

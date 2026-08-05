@@ -19,13 +19,13 @@ export default async function DashboardPage() {
           <Library className="w-20 h-20" />
         </div>
         <h1 className="text-5xl font-extrabold tracking-tight text-foreground">
-          Master any language with <span className="text-primary">LingoAnki</span>
+          Освойте любой язык с <span className="text-primary">LingoAnki</span>
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl">
-          A beautiful, minimalist spaced repetition system to help you remember words forever.
+          Красивая и минималистичная система интервального повторения, которая поможет вам запомнить слова навсегда.
         </p>
         <Button size="lg" className="rounded-2xl text-lg px-8 h-14 font-bold shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all" asChild>
-          <Link href="/login">Start Learning Now</Link>
+          <Link href="/login">Начать обучение</Link>
         </Button>
       </div>
     );
@@ -63,46 +63,46 @@ export default async function DashboardPage() {
   return (
     <div className="flex flex-col space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Welcome back, {session.user.name}!</h1>
-        <p className="text-muted-foreground mt-1">Ready to learn some new words today?</p>
+        <h1 className="text-3xl font-bold">С возвращением, {session.user.name}!</h1>
+        <p className="text-muted-foreground mt-1">Готовы выучить новые слова сегодня?</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="border-2 border-border/50 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-bold uppercase text-muted-foreground">Words to Review</CardTitle>
+            <CardTitle className="text-sm font-bold uppercase text-muted-foreground">Слова для повторения</CardTitle>
             <Brain className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-black">{wordsToReview}</div>
             <p className="text-sm text-muted-foreground mt-1">
-              Waiting for you right now
+              Ждут вас прямо сейчас
             </p>
           </CardContent>
         </Card>
         
         <Card className="border-2 border-border/50 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-bold uppercase text-muted-foreground">Total Words</CardTitle>
+            <CardTitle className="text-sm font-bold uppercase text-muted-foreground">Всего слов</CardTitle>
             <Library className="h-5 w-5 text-blue-500" />
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-black">{totalWords}</div>
             <p className="text-sm text-muted-foreground mt-1">
-              In your dictionary
+              В вашем словаре
             </p>
           </CardContent>
         </Card>
 
         <Card className="border-2 border-border/50 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-bold uppercase text-muted-foreground">Words Learned</CardTitle>
+            <CardTitle className="text-sm font-bold uppercase text-muted-foreground">Выучено слов</CardTitle>
             <Trophy className="h-5 w-5 text-yellow-500" />
           </CardHeader>
           <CardContent>
             <div className="text-4xl font-black">{learnedWords}</div>
             <p className="text-sm text-muted-foreground mt-1">
-              Moved past initial learning
+              Пройдено начальное обучение
             </p>
           </CardContent>
         </Card>
@@ -112,14 +112,14 @@ export default async function DashboardPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Flame className="h-6 w-6 text-orange-500" />
-            Daily Goal
+            Ежедневная цель
           </CardTitle>
-          <CardDescription>Review {goal} words today</CardDescription>
+          <CardDescription>Повторить {goal} слов сегодня</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <Progress value={progressPercent} className="h-4 bg-secondary" />
           <p className="text-sm font-medium text-muted-foreground">
-            {reviewedToday} / {goal} words
+            {reviewedToday} / {goal} слов
           </p>
         </CardContent>
       </Card>
@@ -130,7 +130,7 @@ export default async function DashboardPage() {
           className="flex-1 rounded-2xl text-lg h-16 font-bold shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all" 
           asChild
         >
-          <Link href="/learn">Start Review Session</Link>
+          <Link href="/learn">Начать сеанс повторения</Link>
         </Button>
         <Button 
           size="lg" 
@@ -138,7 +138,7 @@ export default async function DashboardPage() {
           className="flex-1 rounded-2xl text-lg h-16 font-bold border-2 shadow-[0_4px_0_var(--color-border)] hover:translate-y-1 hover:shadow-[0_0px_0_var(--color-border)] transition-all" 
           asChild
         >
-          <Link href="/dictionary">Manage Dictionary</Link>
+          <Link href="/dictionary">Управление словарем</Link>
         </Button>
       </div>
     </div>

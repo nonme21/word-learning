@@ -21,10 +21,10 @@ export function StudySession({ words }: StudySessionProps) {
   if (currentIndex >= words.length) {
     return (
       <div className="flex flex-col items-center justify-center flex-1 space-y-6">
-        <h2 className="text-3xl font-bold">Session Complete!</h2>
-        <p className="text-muted-foreground text-lg">Great job. You've reviewed {words.length} words.</p>
+        <h2 className="text-3xl font-bold">Сеанс завершен!</h2>
+        <p className="text-muted-foreground text-lg">Отличная работа. Вы повторили {words.length} слов(а).</p>
         <Button size="lg" className="rounded-xl font-bold h-12" onClick={() => router.refresh()}>
-          Finish
+          Завершить
         </Button>
       </div>
     );
@@ -77,7 +77,7 @@ export function StudySession({ words }: StudySessionProps) {
               className="w-full h-16 text-xl font-bold rounded-2xl shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all"
               onClick={() => setShowAnswer(true)}
             >
-              Show Answer
+              Показать ответ
             </Button>
           </div>
         )}
@@ -91,8 +91,8 @@ export function StudySession({ words }: StudySessionProps) {
             onClick={() => handleReview(1)}
             disabled={loading}
           >
-            <span className="text-lg">Again</span>
-            <span className="text-xs opacity-70 mt-1">&lt; 1 min</span>
+            <span className="text-lg">Снова</span>
+            <span className="text-xs opacity-70 mt-1">&lt; 1 мин</span>
           </Button>
           <Button 
             variant="outline" 
@@ -100,9 +100,9 @@ export function StudySession({ words }: StudySessionProps) {
             onClick={() => handleReview(2)}
             disabled={loading}
           >
-            <span className="text-lg">Hard</span>
+            <span className="text-lg">Трудно</span>
             <span className="text-xs opacity-70 mt-1">
-              {currentWord.interval === 0 ? "1 day" : `${Math.max(1, Math.round(currentWord.interval * 1.2))} days`}
+              {currentWord.interval === 0 ? "1 дн." : `${Math.max(1, Math.round(currentWord.interval * 1.2))} дн.`}
             </span>
           </Button>
           <Button 
@@ -111,9 +111,9 @@ export function StudySession({ words }: StudySessionProps) {
             onClick={() => handleReview(3)}
             disabled={loading}
           >
-            <span className="text-lg">Good</span>
+            <span className="text-lg">Хорошо</span>
             <span className="text-xs opacity-70 mt-1">
-              {currentWord.interval === 0 ? "3 days" : `${Math.round(currentWord.interval * currentWord.easeFactor)} days`}
+              {currentWord.interval === 0 ? "3 дн." : `${Math.round(currentWord.interval * currentWord.easeFactor)} дн.`}
             </span>
           </Button>
           <Button 
@@ -122,9 +122,9 @@ export function StudySession({ words }: StudySessionProps) {
             onClick={() => handleReview(4)}
             disabled={loading}
           >
-            <span className="text-lg">Easy</span>
+            <span className="text-lg">Легко</span>
             <span className="text-xs opacity-70 mt-1">
-              {currentWord.interval === 0 ? "4 days" : `${Math.round(currentWord.interval * currentWord.easeFactor * 1.3)} days`}
+              {currentWord.interval === 0 ? "4 дн." : `${Math.round(currentWord.interval * currentWord.easeFactor * 1.3)} дн.`}
             </span>
           </Button>
         </div>

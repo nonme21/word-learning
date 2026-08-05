@@ -24,9 +24,9 @@ export default async function DictionaryPage() {
     <div className="flex flex-col space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Your Dictionary</h1>
+          <h1 className="text-3xl font-bold">Ваш словарь</h1>
           <p className="text-muted-foreground mt-1">
-            {words.length} {words.length === 1 ? "word" : "words"} in your collection
+            {words.length} слов(а) в вашей коллекции
           </p>
         </div>
         <AddWordDialog />
@@ -37,9 +37,9 @@ export default async function DictionaryPage() {
           <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center">
             <BrainCircuit className="w-10 h-10 text-muted-foreground" />
           </div>
-          <h2 className="text-2xl font-bold">Your dictionary is empty</h2>
+          <h2 className="text-2xl font-bold">Ваш словарь пуст</h2>
           <p className="text-muted-foreground max-w-md">
-            Start adding words to build your vocabulary. They will automatically appear in your daily review sessions.
+            Начните добавлять слова, чтобы пополнить свой словарный запас. Они автоматически появятся в ваших ежедневных сеансах повторения.
           </p>
         </div>
       ) : (
@@ -49,7 +49,7 @@ export default async function DictionaryPage() {
               <CardContent className="p-5 flex flex-col h-full">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-xl font-bold">{word.word}</h3>
-                  <div className="flex items-center text-xs font-semibold text-muted-foreground bg-muted px-2 py-1 rounded-md" title="Next review">
+                  <div className="flex items-center text-xs font-semibold text-muted-foreground bg-muted px-2 py-1 rounded-md" title="Следующее повторение">
                     <Clock className="w-3 h-3 mr-1" />
                     {new Date(word.nextReview).toLocaleDateString()}
                   </div>

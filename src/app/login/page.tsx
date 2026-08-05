@@ -41,7 +41,7 @@ export default function LoginPage() {
       router.push("/");
       router.refresh();
     } catch (err: any) {
-      setError(err.message || "Something went wrong.");
+      setError(err.message || "Что-то пошло не так.");
     } finally {
       setLoading(false);
     }
@@ -57,12 +57,12 @@ export default function LoginPage() {
             </div>
           </div>
           <CardTitle className="text-3xl font-bold tracking-tight">
-            {isSignUp ? "Create an Account" : "Welcome Back"}
+            {isSignUp ? "Создать аккаунт" : "С возвращением"}
           </CardTitle>
           <CardDescription className="text-base">
             {isSignUp
-              ? "Join LingoAnki and start learning today."
-              : "Sign in to continue your learning journey."}
+              ? "Присоединяйтесь к LingoAnki и начните обучение сегодня."
+              : "Войдите, чтобы продолжить обучение."}
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
@@ -75,7 +75,7 @@ export default function LoginPage() {
             
             {isSignUp && (
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Name</Label>
+                <Label htmlFor="name" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Имя</Label>
                 <Input
                   id="name"
                   placeholder="John Doe"
@@ -99,7 +99,7 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Password</Label>
+              <Label htmlFor="password" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Пароль</Label>
               <Input
                 id="password"
                 type="password"
@@ -116,7 +116,7 @@ export default function LoginPage() {
               className="w-full h-12 text-lg font-bold rounded-xl shadow-sm hover:shadow-md transition-all active:scale-[0.98]" 
               disabled={loading}
             >
-              {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Sign In"}
+              {loading ? "Подождите..." : isSignUp ? "Регистрация" : "Войти"}
             </Button>
             <Button
               type="button"
@@ -127,7 +127,7 @@ export default function LoginPage() {
                 setError("");
               }}
             >
-              {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+              {isSignUp ? "Уже есть аккаунт? Войти" : "Нет аккаунта? Зарегистрироваться"}
             </Button>
           </CardFooter>
         </form>

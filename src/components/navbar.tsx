@@ -37,11 +37,11 @@ export function Navbar() {
             <nav className="flex items-center space-x-4 md:space-x-6 text-sm font-medium">
               <Link href="/learn" className="transition-colors hover:text-foreground/80 text-foreground flex items-center gap-2">
                 <PlayCircle className="w-5 h-5" />
-                <span className="hidden sm:inline">Learn</span>
+                <span className="hidden sm:inline">Обучение</span>
               </Link>
               <Link href="/dictionary" className="transition-colors hover:text-foreground/80 text-foreground/60 flex items-center gap-2">
                 <BookOpen className="w-5 h-5" />
-                <span className="hidden sm:inline">Dictionary</span>
+                <span className="hidden sm:inline">Словарь</span>
               </Link>
             </nav>
           )}
@@ -58,16 +58,16 @@ export function Navbar() {
             ) : (
               <Moon className="h-5 w-5" />
             )}
-            <span className="sr-only">Toggle theme</span>
+            <span className="sr-only">Переключить тему</span>
           </Button>
 
           {session ? (
             <Button variant="outline" className="rounded-full font-bold" onClick={handleLogout}>
-              Logout
+              Выйти
             </Button>
           ) : (
             <Button className="rounded-full font-bold shadow-md" asChild>
-              <Link href="/login">Get Started</Link>
+              <Link href="/login">Начать</Link>
             </Button>
           )}
         </div>
