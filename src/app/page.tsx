@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Brain, Trophy, Flame, Library } from "lucide-react";
 import { EditGoalDialog } from "@/components/edit-goal-dialog";
+import { ActivityCalendar } from "@/components/activity-calendar";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
@@ -20,12 +21,12 @@ export default async function DashboardPage() {
           <Library className="w-20 h-20" />
         </div>
         <h1 className="text-5xl font-extrabold tracking-tight text-foreground">
-          Освойте любой язык с <span className="text-primary">LingoAnki</span>
+          Освойте любой язык с <span className="text-primary">Frostudy</span>
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl">
           Красивая и минималистичная система интервального повторения, которая поможет вам запомнить слова навсегда.
         </p>
-        <Button size="lg" className="rounded-2xl text-lg px-8 h-14 font-bold shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all" nativeButton={false} render={<Link href="/login">Начать обучение</Link>} />
+        <Button size="lg" className="rounded-2xl text-lg px-8 h-14 font-bold shadow-[0_4px_0_rgb(0,119,182)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(0,119,182)] transition-all" nativeButton={false} render={<Link href="/login">Начать обучение</Link>} />
       </div>
     );
   }
@@ -57,6 +58,18 @@ export default async function DashboardPage() {
         gt: 0,
       },
     },
+  });
+
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  
+  const activities = await prisma.studyActivity.findMany({
+    where: {
+      userId,
+      date: {
+        gte: thirtyDaysAgo
+      }
+    }
   });
 
   const targetTotalWords = user?.targetTotalWords || 3000;
@@ -150,10 +163,12 @@ export default async function DashboardPage() {
         </CardContent>
       </Card>
 
+      <ActivityCalendar activities={activities} dailyReviewLimit={dailyReviewLimit} />
+
       <div className="flex flex-col sm:flex-row gap-4 pt-4">
         <Button 
           size="lg" 
-          className="flex-1 rounded-2xl text-lg h-16 font-bold shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all" 
+          className="flex-1 rounded-2xl text-lg h-16 font-bold shadow-[0_4px_0_rgb(0,119,182)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(0,119,182)] transition-all" 
           nativeButton={false}
           render={<Link href="/learn">Начать сеанс повторения</Link>}
         />

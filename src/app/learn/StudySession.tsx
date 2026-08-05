@@ -74,7 +74,7 @@ export function StudySession({ words }: StudySessionProps) {
           <div className="w-full max-w-md animate-in fade-in duration-300 flex-1 flex flex-col justify-end pb-8">
             <Button 
               size="lg" 
-              className="w-full h-16 text-xl font-bold rounded-2xl shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all"
+              className="w-full h-16 text-xl font-bold rounded-2xl shadow-[0_4px_0_rgb(0,119,182)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(0,119,182)] transition-all"
               onClick={() => setShowAnswer(true)}
             >
               Показать ответ

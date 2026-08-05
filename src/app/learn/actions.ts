@@ -50,5 +50,25 @@ export async function submitReview(wordId: string, performanceRating: 1 | 2 | 3 
     },
   });
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  await prisma.studyActivity.upsert({
+    where: {
+      userId_date: {
+        userId: session.user.id,
+        date: today,
+      },
+    },
+    update: {
+      count: { increment: 1 },
+    },
+    create: {
+      userId: session.user.id,
+      date: today,
+      count: 1,
+    },
+  });
+
   return updatedWord;
 }

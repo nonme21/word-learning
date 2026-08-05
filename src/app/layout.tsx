@@ -8,7 +8,7 @@ import { Navbar } from "@/components/navbar";
 const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "LingoAnki - Изучение языков",
+  title: "Frostudy - Изучение языков",
   description: "Красивое приложение для интервального повторения",
 };
 

@@ -30,7 +30,7 @@ export function Navbar() {
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <span className="font-bold text-2xl tracking-tighter text-primary flex items-center gap-2">
               <Library className="w-8 h-8" />
-              LingoAnki
+              Frostudy
             </span>
           </Link>
           {session && (

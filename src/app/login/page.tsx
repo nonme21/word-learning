@@ -61,7 +61,7 @@ export default function LoginPage() {
           </CardTitle>
           <CardDescription className="text-base">
             {isSignUp
-              ? "Присоединяйтесь к LingoAnki и начните обучение сегодня."
+              ? "Присоединяйтесь к Frostudy и начните обучение сегодня."
               : "Войдите, чтобы продолжить обучение."}
           </CardDescription>
         </CardHeader>
