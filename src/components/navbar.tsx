@@ -66,9 +66,7 @@ export function Navbar() {
               Выйти
             </Button>
           ) : (
-            <Button className="rounded-full font-bold shadow-md" asChild>
-              <Link href="/login">Начать</Link>
-            </Button>
+            <Button className="rounded-full font-bold shadow-md" render={<Link href="/login">Начать</Link>} />
           )}
         </div>
       </div>

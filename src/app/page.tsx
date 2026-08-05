@@ -24,14 +24,16 @@ export default async function DashboardPage() {
         <p className="text-xl text-muted-foreground max-w-2xl">
           Красивая и минималистичная система интервального повторения, которая поможет вам запомнить слова навсегда.
         </p>
-        <Button size="lg" className="rounded-2xl text-lg px-8 h-14 font-bold shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all" asChild>
-          <Link href="/login">Начать обучение</Link>
-        </Button>
+        <Button size="lg" className="rounded-2xl text-lg px-8 h-14 font-bold shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all" render={<Link href="/login">Начать обучение</Link>} />
       </div>
     );
   }
 
   const userId = session.user.id;
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
 
   const totalWords = await prisma.word.count({
     where: { userId },
@@ -56,9 +58,23 @@ export default async function DashboardPage() {
     },
   });
 
-  const goal = 10;
-  const reviewedToday = 0;
-  const progressPercent = Math.min((reviewedToday / goal) * 100, 100);
+  const targetTotalWords = 3000;
+  const targetDays = 90;
+  
+  const startDate = user?.createdAt || new Date();
+  const msPassed = Math.max(0, now.getTime() - startDate.getTime());
+  const daysPassed = Math.floor(msPassed / (1000 * 60 * 60 * 24));
+  
+  const wordsPerDay = targetTotalWords / targetDays;
+  const expectedWordsToDate = Math.floor(daysPassed * wordsPerDay);
+  
+  const wordsBehind = Math.max(0, expectedWordsToDate - totalWords);
+  const isBehind = wordsBehind > 0;
+  
+  const daysLeft = Math.max(1, targetDays - daysPassed);
+  const dailyPace = Math.ceil(Math.max(0, targetTotalWords - totalWords) / daysLeft);
+  
+  const progressPercent = Math.min((totalWords / targetTotalWords) * 100, 100);
 
   return (
     <div className="flex flex-col space-y-8">
@@ -108,19 +124,24 @@ export default async function DashboardPage() {
         </Card>
       </div>
 
-      <Card className="border-2 border-border/50 shadow-sm bg-muted/30">
+      <Card className={`border-2 shadow-sm ${isBehind ? 'border-destructive/50 bg-destructive/5' : 'border-border/50 bg-muted/30'}`}>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Flame className="h-6 w-6 text-orange-500" />
-            Ежедневная цель
+            <Flame className={`h-6 w-6 ${isBehind ? 'text-destructive animate-pulse' : 'text-orange-500'}`} />
+            Цель: 3000 слов за 3 месяца
           </CardTitle>
-          <CardDescription>Повторить {goal} слов сегодня</CardDescription>
+          <CardDescription>Вам нужно добавлять по {dailyPace} слов(а) в день, чтобы успеть выполнить план.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Progress value={progressPercent} className="h-4 bg-secondary" />
-          <p className="text-sm font-medium text-muted-foreground">
-            {reviewedToday} / {goal} слов
-          </p>
+          <Progress value={progressPercent} className={`h-4 ${isBehind ? 'bg-destructive/20 *:[data-slot=progress-indicator]:bg-destructive' : 'bg-secondary'}`} />
+          <div className="flex justify-between items-center text-sm font-medium">
+            <span className="text-muted-foreground">{totalWords} / {targetTotalWords} слов</span>
+            {isBehind && (
+              <span className="text-destructive font-bold animate-pulse text-right">
+                ⚠️ Вы отстаете на {wordsBehind} слов! Поднажмите, иначе не успеете!
+              </span>
+            )}
+          </div>
         </CardContent>
       </Card>
 
@@ -128,18 +149,14 @@ export default async function DashboardPage() {
         <Button 
           size="lg" 
           className="flex-1 rounded-2xl text-lg h-16 font-bold shadow-[0_4px_0_rgb(70,163,2)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(70,163,2)] transition-all" 
-          asChild
-        >
-          <Link href="/learn">Начать сеанс повторения</Link>
-        </Button>
+          render={<Link href="/learn">Начать сеанс повторения</Link>}
+        />
         <Button 
           size="lg" 
           variant="outline" 
           className="flex-1 rounded-2xl text-lg h-16 font-bold border-2 shadow-[0_4px_0_var(--color-border)] hover:translate-y-1 hover:shadow-[0_0px_0_var(--color-border)] transition-all" 
-          asChild
-        >
-          <Link href="/dictionary">Управление словарем</Link>
-        </Button>
+          render={<Link href="/dictionary">Управление словарем</Link>}
+        />
       </div>
     </div>
   );

@@ -42,12 +42,8 @@ export default async function LearnPage() {
           Вы повторили все слова на данный момент. Возвращайтесь позже или добавьте новые слова в свой словарь.
         </p>
         <div className="flex gap-4 mt-8">
-          <Button size="lg" className="rounded-xl font-bold h-12" asChild>
-            <Link href="/">На главную</Link>
-          </Button>
-          <Button size="lg" variant="outline" className="rounded-xl font-bold h-12 border-2" asChild>
-            <Link href="/dictionary">Добавить еще слова</Link>
-          </Button>
+          <Button size="lg" className="rounded-xl font-bold h-12" render={<Link href="/">На главную</Link>} />
+          <Button size="lg" variant="outline" className="rounded-xl font-bold h-12 border-2" render={<Link href="/dictionary">Добавить еще слова</Link>} />
         </div>
       </div>
     );
