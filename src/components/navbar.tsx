@@ -66,7 +66,7 @@ export function Navbar() {
               Выйти
             </Button>
           ) : (
-            <Button className="rounded-full font-bold shadow-md" render={<Link href="/login">Начать</Link>} />
+            <Button className="rounded-full font-bold shadow-md" nativeButton={false} render={<Link href="/login">Начать</Link>} />
           )}
         </div>
       </div>
