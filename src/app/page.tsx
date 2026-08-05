@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Brain, Trophy, Flame, Library } from "lucide-react";
+import { EditGoalDialog } from "@/components/edit-goal-dialog";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
@@ -58,8 +59,9 @@ export default async function DashboardPage() {
     },
   });
 
-  const targetTotalWords = 3000;
-  const targetDays = 90;
+  const targetTotalWords = user?.targetTotalWords || 3000;
+  const targetDays = user?.targetDays || 90;
+  const dailyReviewLimit = user?.dailyReviewLimit || 20;
   
   const startDate = user?.createdAt || new Date();
   const msPassed = Math.max(0, now.getTime() - startDate.getTime());
@@ -126,9 +128,12 @@ export default async function DashboardPage() {
 
       <Card className={`border-2 shadow-sm ${isBehind ? 'border-destructive/50 bg-destructive/5' : 'border-border/50 bg-muted/30'}`}>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Flame className={`h-6 w-6 ${isBehind ? 'text-destructive animate-pulse' : 'text-orange-500'}`} />
-            Цель: 3000 слов за 3 месяца
+          <CardTitle className="flex items-center gap-2 justify-between w-full">
+            <div className="flex items-center gap-2">
+              <Flame className={`h-6 w-6 ${isBehind ? 'text-destructive animate-pulse' : 'text-orange-500'}`} />
+              Цель: {targetTotalWords} слов за {targetDays} дн.
+            </div>
+            <EditGoalDialog currentTotalWords={targetTotalWords} currentDays={targetDays} currentDailyLimit={dailyReviewLimit} />
           </CardTitle>
           <CardDescription>Вам нужно добавлять по {dailyPace} слов(а) в день, чтобы успеть выполнить план.</CardDescription>
         </CardHeader>

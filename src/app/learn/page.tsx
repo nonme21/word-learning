@@ -18,6 +18,13 @@ export default async function LearnPage() {
 
   const now = new Date();
   
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { dailyReviewLimit: true }
+  });
+  
+  const limit = user?.dailyReviewLimit || 20;
+
   const wordsToReview = await prisma.word.findMany({
     where: {
       userId: session.user.id,
@@ -25,7 +32,7 @@ export default async function LearnPage() {
         lte: now,
       },
     },
-    take: 20,
+    take: limit,
     orderBy: {
       nextReview: "asc",
     }

@@ -14,6 +14,9 @@ model User {
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
+  targetTotalWords Int @default(3000)
+  targetDays       Int @default(90)
+  dailyReviewLimit Int @default(20)
   sessions      Session[]
   accounts      Account[]
   
