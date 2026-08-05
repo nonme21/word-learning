@@ -26,7 +26,7 @@ export default async function DashboardPage() {
         <p className="text-xl text-muted-foreground max-w-2xl">
           Красивая и минималистичная система интервального повторения, которая поможет вам запомнить слова навсегда.
         </p>
-        <Button size="lg" className="rounded-2xl text-lg px-8 h-14 font-bold shadow-[0_4px_0_rgb(0,119,182)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(0,119,182)] transition-all" nativeButton={false} render={<Link href="/login">Начать обучение</Link>} />
+        <Button size="lg" className="rounded-2xl text-lg px-8 h-14 font-bold shadow-[0_4px_0_var(--color-primary-shadow)] hover:translate-y-1 hover:shadow-[0_0px_0_var(--color-primary-shadow)] transition-all" nativeButton={false} render={<Link href="/login">Начать обучение</Link>} />
       </div>
     );
   }
@@ -168,7 +168,7 @@ export default async function DashboardPage() {
       <div className="flex flex-col sm:flex-row gap-4 pt-4">
         <Button 
           size="lg" 
-          className="flex-1 rounded-2xl text-lg h-16 font-bold shadow-[0_4px_0_rgb(0,119,182)] hover:translate-y-1 hover:shadow-[0_0px_0_rgb(0,119,182)] transition-all" 
+          className="flex-1 rounded-2xl text-lg h-16 font-bold shadow-[0_4px_0_var(--color-primary-shadow)] hover:translate-y-1 hover:shadow-[0_0px_0_var(--color-primary-shadow)] transition-all" 
           nativeButton={false}
           render={<Link href="/learn">Начать сеанс повторения</Link>}
         />

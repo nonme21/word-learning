@@ -7,10 +7,12 @@ import { Moon, Sun, Library, PlayCircle, BookOpen } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useColorTheme } from "./color-theme-provider";
 
 export function Navbar() {
   const { data: session } = authClient.useSession();
   const { theme, setTheme } = useTheme();
+  const { colorTheme, setColorTheme } = useColorTheme();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
@@ -60,6 +62,26 @@ export function Navbar() {
             )}
             <span className="sr-only">Переключить тему</span>
           </Button>
+
+          {mounted && (
+            <div className="flex bg-muted rounded-full p-1 gap-1">
+              <button 
+                onClick={() => setColorTheme("ice")}
+                className={`w-6 h-6 rounded-full bg-[#00b4d8] border-2 transition-transform ${colorTheme === "ice" ? "scale-110 border-foreground" : "border-transparent"}`}
+                title="Ледяной"
+              />
+              <button 
+                onClick={() => setColorTheme("green")}
+                className={`w-6 h-6 rounded-full bg-[#58cc02] border-2 transition-transform ${colorTheme === "green" ? "scale-110 border-foreground" : "border-transparent"}`}
+                title="Зеленый"
+              />
+              <button 
+                onClick={() => setColorTheme("purple")}
+                className={`w-6 h-6 rounded-full bg-[#a855f7] border-2 transition-transform ${colorTheme === "purple" ? "scale-110 border-foreground" : "border-transparent"}`}
+                title="Фиолетово-розовый"
+              />
+            </div>
+          )}
 
           {session ? (
             <Button variant="outline" className="rounded-full font-bold" onClick={handleLogout}>

@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { AddWordDialog } from "@/components/add-word-dialog";
 import { BrainCircuit, Clock } from "lucide-react";
+import { ExcelActions } from "@/components/excel-actions";
 
 export default async function DictionaryPage() {
   const session = await auth.api.getSession({
@@ -29,7 +30,10 @@ export default async function DictionaryPage() {
             {words.length} слов(а) в вашей коллекции
           </p>
         </div>
-        <AddWordDialog />
+        <div className="flex items-center gap-2">
+          <ExcelActions />
+          <AddWordDialog />
+        </div>
       </div>
 
       {words.length === 0 ? (
