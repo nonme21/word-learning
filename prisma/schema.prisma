@@ -76,12 +76,10 @@ model Word {
   word        String
   translation String
   example     String?
-  
-  // Spaced Repetition data
-  interval    Int      @default(0)    // interval in days
-  repetition  Int      @default(0)    // number of consecutive times correct
-  easeFactor  Float    @default(2.5)  // SM-2 easiness factor
-  nextReview  DateTime @default(now()) // When the card should be reviewed again
+  interval    Int      @default(0)
+  repetition  Int      @default(0)
+  easeFactor  Float    @default(2.5)
+  nextReview  DateTime @default(now())
   
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

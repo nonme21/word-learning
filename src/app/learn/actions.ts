@@ -16,9 +16,7 @@ export async function submitReview(wordId: string, performanceRating: 1 | 2 | 3 
 
   let { interval, repetition, easeFactor } = word;
 
-  // Simple SM-2 like algorithm
-  // performanceRating: 1=Again, 2=Hard, 3=Good, 4=Easy
-  
+
   if (performanceRating === 1) {
     repetition = 0;
     interval = 1;
@@ -39,7 +37,6 @@ export async function submitReview(wordId: string, performanceRating: 1 | 2 | 3 
     repetition += 1;
   }
 
-  // Calculate next review date
   const nextReview = new Date();
   nextReview.setDate(nextReview.getDate() + interval);
 

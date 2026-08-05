@@ -57,7 +57,7 @@ export default async function DashboardPage() {
   });
 
   const goal = 10;
-  const reviewedToday = 0; // We'd need a ReviewLog model to track this accurately, but we'll mock it for now
+  const reviewedToday = 0;
   const progressPercent = Math.min((reviewedToday / goal) * 100, 100);
 
   return (

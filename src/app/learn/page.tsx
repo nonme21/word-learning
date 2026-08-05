@@ -18,7 +18,6 @@ export default async function LearnPage() {
 
   const now = new Date();
   
-  // Find words that need reviewing
   const wordsToReview = await prisma.word.findMany({
     where: {
       userId: session.user.id,
@@ -26,7 +25,7 @@ export default async function LearnPage() {
         lte: now,
       },
     },
-    take: 20, // max 20 per session to keep it manageable
+    take: 20,
     orderBy: {
       nextReview: "asc",
     }
